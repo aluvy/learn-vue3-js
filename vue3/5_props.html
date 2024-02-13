@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue3 props</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<h1>Vue3 props</h1>
+
+		<div id="app">
+			<app-header :title="title"></app-header>
+		</div>
+
+		<script>
+			Vue.createApp({
+				components: {
+					'app-header': {
+						template: `
+							<div>
+								<p>app-header 컴포넌트 등록</p>
+								<p>{{ title }}</p>
+							</div>`,
+						props: {
+							title: String,
+						},
+					},
+				},
+				data() {
+					return {
+						title: '프롭스로 받은 타이틀',
+					};
+				},
+			}).mount('#app');
+		</script>
+	</body>
+</html>
