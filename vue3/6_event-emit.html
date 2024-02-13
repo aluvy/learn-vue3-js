@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue3 event-emit</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<h1>Vue3 event-emit</h1>
+
+		<div id="app">
+			<app-contents @refresh="showAlert"></app-contents>
+		</div>
+
+		<script>
+			const appContents = {
+				template: `
+					<div>
+						<button type="button" @click='sendEvent'>갱신</button>
+					</div>
+				`,
+				methods: {
+					sendEvent() {
+						this.$emit('refresh');
+					},
+				},
+			};
+
+			Vue.createApp({
+				components: {
+					appContents,
+				},
+				methods: {
+					showAlert() {
+						alert('refresh 받음');
+					},
+				},
+			}).mount('#app');
+		</script>
+	</body>
+</html>
