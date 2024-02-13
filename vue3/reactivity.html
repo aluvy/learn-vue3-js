@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>vue3 | reactivity 기초</title>
+		<!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+	</head>
+	<body>
+		<h1>Proxy()로 Reactivity 구현하기</h1>
+		<div id="app"></div>
+
+		<script>
+			const data = {
+				message: 10,
+			};
+
+			function render(sth) {
+				const div = document.querySelector('#app');
+				div.innerHTML = sth;
+			}
+
+			// Proxy() : 기본 값을 재 정의하는 함수
+			const app = new Proxy(data, {
+				get() {
+					console.log('hi');
+				},
+
+				// app.message 의 값을 변경할 때 마다 호출 됨
+				set(target, prop, value) {
+					console.log('new value set');
+					console.log(target, prop, value); // {message: 10} 'message' 새로 입력한 값
+
+					target[prop] = value;
+					render(value);
+				},
+			});
+		</script>
+	</body>
+</html>
