@@ -6,7 +6,7 @@
 ＊ vue3 - Proxy() 기반으로 나중에 추가된 데이터에 대해서도 reactivity가 동작함
 ```
 
-## 문법 변화
+## syntax
 ### vue2
 ```javascript
 new Vue({
